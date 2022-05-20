@@ -118,8 +118,6 @@ class Signal_icon(gtk.Button):
         image_inactive = gtk.image_new_from_pixbuf(pixbuf_inactive)
         #
 
-        # self.img_active.set_from_file(jh.ResPath(img_active))
-        # self.img_inactive.set_from_file(jh.ResPath(img_inactive))
         self.img_active.set_from_pixbuf(pixbuf_active)
         self.img_inactive.set_from_pixbuf(pixbuf_inactive)
 
@@ -301,7 +299,7 @@ class Diag(gtk.Object):
         self.watch_send_btn.set_size_request(150, 20)
         self.watch_send_btn.connect(
             'clicked', self.watch_add, self.lbl_plc_symbol)
-        # self.fixed.put(self.watch_send_btn,860,310+8)
+
 
         self.find_scheme_txt = find_io_of(self.lbl_plc_symbol.get_text())
 
@@ -313,7 +311,7 @@ class Diag(gtk.Object):
 
         self.table.attachToCell(bigLabel('\nplc_symbol:'),
                                 xpadding=5, ypadding=2, col=1, row=9)
-        #self.table.attachToCell(self.watch_list_box, xpadding=5, ypadding=2, col=1, row=9)
+
 
         self.table.attachToCell(self.lbl_plc_symbol,
                                 xpadding=15, ypadding=2, col=1, row=10)
@@ -328,16 +326,9 @@ class Diag(gtk.Object):
         string = find_io_of(self.lbl_plc_symbol.get_text()).split(' ')[1]
         file = os.path.join('/mnt', 'plc', 'python',
                             'picture', 'signal_diag', self.scheme_name)
-        #command = '[\'' +'evince\''+', \''+'--find='+string+']'
-        #command = "['evince', '{}', --find={}]".format(file,string)
-        # self.lbl_description.set_text(command)
         Popen(['xdotool', 'key', 'ctrl+F4'])
         p = Popen(['evince', file, '--fullscreen', '--find={}'.format(string)])
-        #p = os.spawnlp(os.P_NOWAIT, "envince", "mycmd", "myarg")
-        #command = ['envince']
-        #command = 'evince /mnt/plc/python/picture/signal_diag/S403E1_EN.pdf'
-        #os.spawnlp(os.P_WAIT, *shlex.split(command))
-        # self.lbl_debug.set_text('ok')
+
 
     def add(self, sig_name='default_name', type='btn', symbol=None, location='Default location', frame=1,
             frame_pos={"x": 50, "y": 50}, img_active=ICON_GREEN,

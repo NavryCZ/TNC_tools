@@ -274,8 +274,6 @@ value_to_format = gtk.Label('1105723392')
 md = gtk.MessageDialog(None, gtk.DIALOG_DESTROY_WITH_PARENT,
                        gtk.MESSAGE_WARNING, gtk.BUTTONS_CLOSE, "Value is out of range!\n")
 
-# Test entry:
-# testEntry = plcEntry('IW_S_PL_diag_message_high_word')
 
 # COMBO BOX for axe selecting:
 cb = gtk.combo_box_new_text()
@@ -382,10 +380,13 @@ pe.connect('changed', updateOutput)
 pi.connect('changed', updateOutput)
 pvn.connect('changed', updateOutput)
 
+# values for debugging
 #qct.attachToCell(IB177, xpadding=20, ypadding=5, col=2, row=7)
 #qct.attachToCell(IW182, xpadding=20, ypadding=5, col=2, row=8)
 #qct.attachToCell(IW184, xpadding=20, ypadding=5, col=2, row=9)
 #qct.attachToCell(ID178, xpadding=20, ypadding=5, col=2, row=10)
+
+
 qct.attachToCell(btn_write, xpadding=20, ypadding=50, col=2, row=11)
 
 # init default options for combo boxes

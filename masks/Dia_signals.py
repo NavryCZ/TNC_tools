@@ -69,8 +69,6 @@ lbl_plc_update.set_text('Last PLC update: ' + date_time_now)
 
 app.fixed.put(lbl_plc_update, 10, 800-2)
 
-# wachlist test
-# Watchlist(symbol = 'MG_LED_test')
 
 
 '''
@@ -209,14 +207,6 @@ if int(machine_type) in range(1060, 1281):
     app.add(sig_name='YV50', type='air valve', symbol='O_S1_air_release_valve', location='spindle', frame='1', frame_pos={
             "x": 382, "y": 606}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
 
-    # Chip conveyor 2 - M31, SK26 (KM34)
-    # app.add(sig_name = 'SK26', type = 'running sensor', symbol='I_chip_conveyor_2_running_sensor', location = 'tank', frame='1', frame_pos = {"x":970, "y":770},img_active= ICON_MOT_STATE_1,img_inactive = ICON_MOT_STATE_2, description = '', help_img = '', size = 18)
-    # app.add(sig_name = 'M31', type = 'motor contactor', symbol='O_auxiliary_chip_conveyers_ON', location = 'contactor box', frame='1', frame_pos = {"x":980, "y":640},img_active= FORWARD_ON,img_inactive = FORWARD_OFF, description = '', help_img = '', size = 14)
-
-    # Chip conveyor 3 - M32, SK27
-    # app.add(sig_name = 'SK26', type = 'running sensor', symbol='I_chip_conveyor_3_running_sensor', location = 'tank', frame='1', frame_pos = {"x":970, "y":770},img_active= ICON_MOT_STATE_1,img_inactive = ICON_MOT_STATE_2, description = '', help_img = '', size = 18)
-    # app.add(sig_name = 'M31', type = 'motor contactor', symbol='O_auxiliary_chip_conveyers_ON', location = 'contactor box', frame='1', frame_pos = {"x":980, "y":640},img_active= FORWARD_ON,img_inactive = FORWARD_OFF, description = '', help_img = '', size = 14)
-
     # Gearbox cooling
     app.add(sig_name='M50', type='gearbox cooling', symbol='O_Spindle_gear_cooling_on', location='cooling', frame='1', frame_pos={
             "x": 136, "y": 246}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
@@ -307,7 +297,6 @@ if int(machine_type) in range(1060, 1281):
 
         app.add(sig_name='T_IN', type='kessler tool in', symbol='I_tool_located_in_spindle', location='spindle', frame='1', frame_pos={
                 "x": 382, "y": 585-20}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='S11', type='kessler piston back', symbol='I_S1_piston_back', location='spindle', frame='1', frame_pos={"x": 360-2, "y": 585}, img_active=ICON_RED_BIG, img_inactive=ICON_GREEN_BIG, description='', help_img='', size=14)
 
         app.fixed.put(Dia_image(OPTION_IMAGE), 110, 50)
         app.fixed.put(gtk.Label('KESSLER SPINDLE'), 160, 52)
@@ -364,7 +353,6 @@ py_NN_MG_M7_M8_cooling_unit_filter_clog_active = jh.Get(
     GLOBAL_SYMBOL + 'NN_MG_M7_M8_cooling_unit_filter_clog_active').values()[0]
 
 if int(machine_type) in range(1680, 2081):
-    # NN_MG_M7_M8_filter2_clog_signal_positive
     app.scheme_name = 'S454E1_EN.pdf'
     app.set_bg(os.path.join('PLC:\python\picture\signal_diag', '2080_gifu.png'))
     app.fixed.put(app.watch_send_btn, 860, 310+8+225)
@@ -375,9 +363,6 @@ if int(machine_type) in range(1680, 2081):
     # add semafor
     app.fixed.put(Semafor('red', 'orange', 'green'), 10, 60)
 
-   # app.fixed.put(Semafor('blue'),200,50)
-   # app.fixed.put(Semafor('orange','green','orange'),300,50)
-   # app.fixed.put(Semafor('red','orange','blue','green'),400,50)
 
    # options
 
@@ -501,11 +486,7 @@ if int(machine_type) in range(1680, 2081):
         app.add(sig_name='M374', type='M func, set pressure', symbol='MG_M374_act_pressure_4', location='filtration unit', frame='1', frame_pos={
                 "x": 95+300+40, "y": 695+80}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
 
-    # FILTRATION UNIT Sofima
-        # NN_MG_M7_cooling_unit_active                  -> False
-        # NN_MG_M07_with_water                          -> True
-        # NN_MG_M7_transfer_pump_active                 -> False
-        # NN_MG_M7_M8_cooling_unit_filter_clog_active   -> True
+
 
     if (py_NN_MG_M7_transfer_pump_active == False and py_NN_MG_M7_M8_cooling_unit_filter_clog_active == True and py_NN_MG_M07_with_water == True and py_NN_MG_M7_cooling_unit_active == False or show_all_options):
         app.fixed.put(Dia_image(OPTION_IMAGE), 27+300, 664)
@@ -515,10 +496,6 @@ if int(machine_type) in range(1680, 2081):
                 "x": 95+300, "y": 695}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
         app.add(sig_name='FILTER_OK', type='filter ok state', symbol='I_coolant_M07_1_water_filter_OK', location='filtration unit', frame='1',
                 frame_pos={"x": 95+300, "y": 695+25}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
-        #app.add(sig_name='M371', type='M func, set pressure', symbol='MG_M371_act_pressure_1', location='filtration unit', frame='1', frame_pos={"x": 95+300+40, "y": 695+20}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
-        #app.add(sig_name='M372', type='M func, set pressure', symbol='MG_M372_act_pressure_2', location='filtration unit', frame='1', frame_pos={"x": 95+300+40, "y": 695+40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
-        #app.add(sig_name='M373', type='M func, set pressure', symbol='MG_M373_act_pressure_3', location='filtration unit', frame='1', frame_pos={"x": 95+300+40, "y": 695+60}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
-        #app.add(sig_name='M374', type='M func, set pressure', symbol='MG_M374_act_pressure_4', location='filtration unit', frame='1', frame_pos={"x": 95+300+40, "y": 695+80}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=12)
 
     # Pumps:
     app.add(sig_name='M4', type='water pump', symbol='O_chip_clear_pump_on', location='tank', frame='1', frame_pos={
@@ -669,7 +646,6 @@ PAL_OUT = os.path.join('PLC:\python\picture\signal_diag', 'pal_out.png')
 
 
 def switch_parent(tab, page=None, page_num=None):
-    #jh.note.Show(str(page_num), 'EditScreen')
 
     if str(page_num) == '1':
         app.table.reparent(app.fixed_pc)
@@ -693,10 +669,6 @@ def set_pallete(value, event=None):
     if end_switch_1 and not end_switch_2:
         app.img_bg_pc.set_from_file(jh.ResPath(PAL2_IN))
 
-##############
-# DEBUG
-##############
-# x802 addr 20
 
 
 if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
@@ -935,8 +907,6 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
             app.show()
         else:
             pass
-    ##############################
-    # default signals starts here
 
     if mag_pallet_changer:
         a802_enable = False
@@ -1047,9 +1017,6 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
                 "x": 820, "y": 190 + 1*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='I_mag_ch1_mag_ok', type='pc', symbol='I_mag_ch1_mag_ok', location='', frame='2', frame_pos={
                 "x": 820, "y": 190 + 2*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='LEFT UNMAGZE ', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 820, "y": 190 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='LEFT EMPTY', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 820, "y": 190 + 4*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='LEFT EMPTY', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 820, "y": 190 + 5*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
 
         app.add(sig_name='O_mag_channel_2', type='pc', symbol='O_mag_channel_2', location='', frame='2', frame_pos={
                 "x": 970, "y": 190 + 0*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
@@ -1057,9 +1024,6 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
                 "x": 970, "y": 190 + 1*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='I_mag_ch2_mag_ok', type='pc', symbol='I_mag_ch2_mag_ok', location='', frame='2', frame_pos={
                 "x": 970, "y": 190 + 2*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='RIGHT UNMAGZE ', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 970, "y": 190 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='RIGHT EMPTY', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 970, "y": 190 + 4*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='RIGHT EMPTY', type='pc', symbol='MG_marker_zero', location='', frame='2', frame_pos={"x": 970, "y": 190 + 5*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='O_mag_start_mag', type='pc', symbol='O_mag_start_mag', location='', frame='2', frame_pos={
                 "x": 895, "y": 190 + 3*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='O_mag_start_demag', type='pc', symbol='O_mag_start_demag', location='', frame='2', frame_pos={
@@ -1074,12 +1038,6 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
                 "x": 895, "y": 190 + 8*vm-40}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
 
         # (pal 1)
-        #app.add(sig_name='O_PC1_cover_close', type='pc', symbol='O_PC1_cover_close', location='', frame='2', frame_pos={"x": 240, "y": 255 + 0*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC1_cover_open', type='pc', symbol='O_PC1_cover_open', location='', frame='2', frame_pos={"x": 240, "y": 255 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC1_hydro_disconnect', type='pc', symbol='O_PC1_hydro_disconnect', location='', frame='2', frame_pos={"x": 240, "y": 255 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC1_hydro_connect', type='pc', symbol='O_PC1_hydro_connect', location='', frame='2', frame_pos={"x": 240, "y": 255 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC1_el_disconnect', type='pc', symbol='O_PC1_el_disconnect', location='', frame='2', frame_pos={"x": 240, "y": 255 + 4*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC1_el_connect', type='pc', symbol='O_PC1_el_connect', location='', frame='2', frame_pos={"x": 240, "y": 255 + 5*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='I_PC_pal1_wpc_clamped', type='pc', symbol='I_PC_pal1_wpc_clamped', location='', frame='2', frame_pos={
                 "x": 150, "y": 255 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='O_PC_pal1_enable_mag_demag', type='pc', symbol='O_PC_pal1_enable_mag_demag', location='', frame='2', frame_pos={
@@ -1087,22 +1045,15 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
 
         app.add(sig_name='I_PC1_cover_closed', type='pc', symbol='I_PC1_cover_closed', location='', frame='2', frame_pos={
                 "x": 445, "y": 255 + 0*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC1_cover_opened', type='pc', symbol='I_PC1_cover_opened', location='', frame='2', frame_pos={"x": 445, "y": 255 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC1_hydro_disconnected', type='pc', symbol='I_PC1_hydro_disconnected', location='', frame='2', frame_pos={"x": 445, "y": 255 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
+       
         app.add(sig_name='I_PC1_hydro_connected', type='pc', symbol='I_PC1_hydro_connected', location='', frame='2', frame_pos={
                 "x": 445, "y": 255 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC1_el_disconnected', type='pc', symbol='I_PC1_el_disconnected', location='', frame='2', frame_pos={"x": 445, "y": 255 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
+
         app.add(sig_name='I_PC1_el_connected', type='pc', symbol='I_PC1_el_connected', location='', frame='2', frame_pos={
                 "x": 445, "y": 255 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
 
         # (pal 2)
 
-        #app.add(sig_name='O_PC2_cover_close', type='pc', symbol='O_PC2_cover_close', location='', frame='2', frame_pos={"x": 240, "y": 85 + 0*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC2_cover_open', type='pc', symbol='O_PC2_cover_open', location='', frame='2', frame_pos={"x": 240, "y": 85 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC2_hydro_disconnect', type='pc', symbol='O_PC2_hydro_disconnect', location='', frame='2', frame_pos={"x": 240, "y": 85 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC2_hydro_connect', type='pc', symbol='O_PC2_hydro_connect', location='', frame='2', frame_pos={"x": 240, "y": 85 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC2_el_disconnect', type='pc', symbol='O_PC2_el_disconnect', location='', frame='2', frame_pos={"x": 240, "y": 85 + 4*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='O_PC2_el_connect', type='pc', symbol='O_PC2_el_connect', location='', frame='2', frame_pos={"x": 240, "y": 85 + 5*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='I_PC_pal2_wpc_clamped', type='pc', symbol='I_PC_pal2_wpc_clamped', location='', frame='2', frame_pos={
                 "x": 150, "y": 85 + 3*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
         app.add(sig_name='O_PC_pal2_enable_mag_demag', type='pc', symbol='O_PC_pal2_enable_mag_demag', location='', frame='2', frame_pos={
@@ -1110,11 +1061,10 @@ if jh.Get(GLOBAL_SYMBOL + 'NN_MG_pallet_change_inactive').values()[0]:
 
         app.add(sig_name='I_PC2_cover_closed', type='pc', symbol='I_PC2_cover_closed', location='', frame='2', frame_pos={
                 "x": 445, "y": 85 + 0*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC2_cover_opened', type='pc', symbol='I_PC2_cover_opened', location='', frame='2', frame_pos={"x": 445, "y": 85 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC2_hydro_disconnected', type='pc', symbol='I_PC2_hydro_disconnected', location='', frame='2', frame_pos={"x": 445, "y": 85 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
+
         app.add(sig_name='I_PC2_hydro_connected', type='pc', symbol='I_PC2_hydro_connected', location='', frame='2', frame_pos={
                 "x": 445, "y": 85 + 1*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
-        #app.add(sig_name='I_PC2_el_disconnected', type='pc', symbol='I_PC2_el_disconnected', location='', frame='2', frame_pos={"x": 445, "y": 85 + 4*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
+
         app.add(sig_name='I_PC2_el_connected', type='pc', symbol='I_PC2_el_connected', location='', frame='2', frame_pos={
                 "x": 445, "y": 85 + 2*vm}, img_active=ICON_GREEN_BIG, img_inactive=ICON_RED_BIG, description='', help_img='', size=14)
 

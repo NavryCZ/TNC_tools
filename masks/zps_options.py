@@ -31,10 +31,7 @@ def hide(widget=None):
 btn_exit = gtk.Button(' X ')
 btn_exit.connect('released', hide)
 myWindow.headerHBox.pack_start(btn_exit, expand=False, fill=False, padding=10)
-#############################################################################
 
-# machine_type = jh.Get('\\CFG\\CfgOemVersion\\ZPS0\\version').values()[0]
-# jh.Get("\\PLC\\program\\symbol\\module\\'LubricationAxes.src'\\BL_DG_lubrication_axes_unit_type"
 
 
 # 2 Gifu -> changer_type = 3
@@ -166,7 +163,6 @@ class OptionList(gtk.VBox):
         self.create_columns(treeView)
         self.statusbar = gtk.Statusbar()
 
-        #self.pack_start(self.statusbar, False, False, 0)
 
         self.show_all()
 

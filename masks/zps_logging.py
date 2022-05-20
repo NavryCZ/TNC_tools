@@ -56,14 +56,6 @@ mask_logger.setLevel(logging.INFO)
 
 mask_logger.addHandler(log_handler)
 
-'''
-def log_add(message='default'):
-    time = strftime("%d.%m.%Y  %H:%M:%S", gmtime())
-    my_label = gtk.Label(' {} \t : {}'.format(time, message))
-    my_label.set_alignment(xalign=0.00, yalign=0)
-    my_VBox.pack_end(my_label, False, False, 0)
-    my_label.show()
-'''
 
 
 def log_add(message='default'):
@@ -114,7 +106,7 @@ class PLC_Logging():
                          ';'.join(self.buffer_dict.values()))
         #log_add(', '.join(self.buffer_dict.keys()))
         if self.counter == 120:
-            outfile = open('/mnt/plc/service/zps_logging_header.txt', "w")
+            outfile = open('/mnt/plc/service/logging_header.txt', "w")
             outfile.writelines('YYYYMMDDHHMMSS;' +
                                ';'.join(self.buffer_dict.keys()))
             outfile.close()
@@ -123,7 +115,7 @@ class PLC_Logging():
         return True
 
 
-# Console window
+# Console window for debug purposes
 '''
 my_sw = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
 my_sw.set_policy(hscrollbar_policy=gtk.POLICY_AUTOMATIC, vscrollbar_policy=gtk.POLICY_AUTOMATIC)
@@ -138,9 +130,6 @@ app.tabs.set_tab_label_text(my_sw, "console")
 # Logging
 axis_count = (jh.Get(GLOBAL_SYMBOL + 'ApiGen.NN_GenAxCount')).values()[0]
 spindle_count = (jh.Get(GLOBAL_SYMBOL + 'ApiGen.NN_GenSpiCount')).values()[0]
-
-#axis_log_count = (jh.Get(GLOBAL_SYMBOL + 'ApiAxis[{}].NN_AxLogNumber'.format(i))).values()[0]
-#spindle_log_count = (jh.Get(GLOBAL_SYMBOL + 'ApiSpin[%s].NN_SpiLogNumber'.format(i))).values()[0]
 
 
 log_variables = []
